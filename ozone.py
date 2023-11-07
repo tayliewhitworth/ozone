@@ -68,13 +68,13 @@ while True:
         if choice == '1':
             plt.show()
         elif choice == '2':
-            filename = input("Enter file with extension of jpg|png|pdf: ")
+            filename = input("\nEnter file with extension of jpg|png|pdf: ")
             plt.savefig(filename)
         else:
             print("Invalid choice. Try again.")
             continue
 
-        another_county = input(f"Another {state_name} county? (y/n): ")
+        another_county = input(f"\nAnother {state_name} county? (y/n): ")
 
         if another_county.lower() == 'y':
             print()
