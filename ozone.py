@@ -28,11 +28,11 @@ while True:
     if state_code == 'Q':
         break
 
-    state_name = [k for k, v in state_codes.items() if v == state_code][0]
-    
     if state_code not in state_codes.values():
         print("Invalid state code. Try again.")
         continue
+
+    state_name = [k for k, v in state_codes.items() if v == state_code][0]
 
     for idx, county in enumerate(counties_by_state[state_code], start=1):
         print(f"{idx}: {county}\n")
@@ -52,14 +52,17 @@ while True:
 
         plot_color = 'green' if average_aqi <= 50 else 'red'
 
-        plt.figure(figsize=(12, 6))
+        plt.figure(figsize=(10, 5))
         plt.plot(filtered_data['Date Local'], filtered_data['AQI'], color=plot_color)
         plt.title(f"{county} County, {state_name} (avg. AQI: {round(average_aqi)})")
-        plt.xlabel('Date')
         plt.ylabel('AQI')
-        plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
-        plt.gca().xaxis.set_major_locator(mdates.MonthLocator())
-        plt.gcf().autofmt_xdate()
+
+        plt.tick_params(
+            axis='x',
+            which='both',
+            bottom=False,
+            top=False,
+            labelbottom=False) 
 
         choice = input("\nChoose destination for plot:\n\n\t1. Screen\n\n\t2. File\n")
         if choice == '1':
